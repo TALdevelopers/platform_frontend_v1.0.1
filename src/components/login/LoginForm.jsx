@@ -46,6 +46,21 @@ const LoginForm = () => {
   const [email, setEmail] = useState('')
   const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
+
+  const googleAuth = () => {
+		window.open(
+			`${process.env.REACT_APP_API_URL}/api/google/callback`,
+			"_self"
+		);
+	};
+	const facebookAuth = () => {
+		window.open(
+			`${process.env.REACT_APP_API_URL}/api/facebook/callback`,
+			"_self"
+		);
+	};
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
     // const data = new FormData(event.currentTarget);
@@ -104,17 +119,19 @@ const LoginForm = () => {
               fullWidth
               variant="contained"
               sx={{ mt: 1, mb: 1, display:"flex", flexDirection:"row" }}
+              onClick={googleAuth}
             >
-              <Link href="https://www.google.com/" target={"_blank"} style={{display:"flex", flexDirection:"row", alignItems:'center', justifyContent:"center", paddingRight:"10px"}}>
-                <GoogleIcon className='Icons' style={{color:"white", fontSize:"2rem", margin:"0px 10px"}}/><Typography sx={{ color: "white", fontSize:"1rem" }}>Log in with google</Typography></Link>
+              {/* <Link target={"_blank"} style={{display:"flex", flexDirection:"row", alignItems:'center', justifyContent:"center", paddingRight:"10px"}}> */}
+                <GoogleIcon className='Icons' style={{color:"white", fontSize:"2rem", margin:"0px 10px"}}/><Typography sx={{ color: "white", fontSize:"1rem" }}>Log in with google</Typography>
+                {/* </Link> */}
             </Button>
               <Button
               fullWidth
               variant="contained"
               sx={{ mt: 1, mb: 1 }}
+              onClick={facebookAuth}
             >
-              <Link href="https://www.facebook.com/" target={"_blank"} style={{display:"flex", flexDirection:"row", alignItems:'center', justifyContent:"center", paddingRight:"10px"}}>
-                <FacebookIcon className='Icons' style={{color:"white", fontSize:"2rem", margin:"0px 10px"}}/><Typography sx={{ color: "white", fontSize:"1rem" }}>Log in with facebook</Typography></Link>
+              <FacebookIcon className='Icons' style={{color:"white", fontSize:"2rem", margin:"0px 10px"}}/><Typography sx={{ color: "white", fontSize:"1rem" }}>Log in with facebook</Typography>
             </Button>
               {/* <Grid className='IconsContainer'>
               <Link href="https://www.google.com/" target={"_blank"}>
