@@ -9,7 +9,7 @@ const Home = () => {
     <>
       <Banner/>
       <VideoPlayer />   
-      <PopWindow />
+      {/* <PopWindow /> */}
     </>
   )
 }

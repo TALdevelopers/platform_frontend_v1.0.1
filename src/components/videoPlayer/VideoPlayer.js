@@ -34,23 +34,23 @@ const VideoPlayer = () => {
             }}
             onPlay={() => {
               console.log("play data sent");
-              const response = axios.post(VIDEOLOG_URL,
-                JSON.stringify({ }),
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                    'Access-Control-Allow-Credentials': true
-                }
-            );
+            //   const response = axios.post(VIDEOLOG_URL,
+            //     JSON.stringify({ }),
+            //     {
+            //         headers: { 'Content-Type': 'application/json' },
+            //         'Access-Control-Allow-Credentials': true
+            //     }
+            // );
             }}
             onPause={() => {
               console.log("pause data sent");
-              const response = axios.post(VIDEOLOG_URL,
-                JSON.stringify({ }),
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                    'Access-Control-Allow-Credentials': true
-                }
-            );
+            //   const response = axios.post(VIDEOLOG_URL,
+            //     JSON.stringify({ }),
+            //     {
+            //         headers: { 'Content-Type': 'application/json' },
+            //         'Access-Control-Allow-Credentials': true
+            //     }
+            // );
             }}
             // onProgress={console.log("playing")}
           />

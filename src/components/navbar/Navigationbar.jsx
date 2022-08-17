@@ -33,13 +33,20 @@ const pages = [
 // const pages = ['Courses', 'Book an apointment', 'Life', 'Group', 'Store'];
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-const userAuthenticated = false;
+// const userAuthenticated = true;
 
 const Navigationbar = (props) => {
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-    const handleOpenNavMenu = (event) => {
+  const user = props.user;
+  console.log("printed from navbar component: "+user)
+	const logout = () => {
+		window.open(`${process.env.REACT_APP_API_URL}/api/logout`, "_self");
+	};
+
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
   const handleOpenUserMenu = (event) => {
@@ -146,11 +153,11 @@ const Navigationbar = (props) => {
               </Button>
             ))}
           </Box>
-        {userAuthenticated ?
+        {user ?
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt={user} src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -169,11 +176,17 @@ const Navigationbar = (props) => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
+              
+                <MenuItem onClick={handleCloseUserMenu}>
+                  {/* <Typography textAlign="center">Profile</Typography> */}
+                  <Typography textAlign="center" onClick={logout}>Logout</Typography>
+                </MenuItem>
+            
+              {/* {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
-              ))}
+              ))} */}
             </Menu>
           </Box>
           : 
