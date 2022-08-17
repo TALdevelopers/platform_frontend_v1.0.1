@@ -1,57 +1,81 @@
-import React from 'react'
-import { Box } from '@mui/system'
-import { Container, Grid, Typography } from '@mui/material'
+// import Container from '@material-ui/core/Container';
+// import Grid from '@material-ui/core/Grid';
+// import Box from '@material-ui/core/Box';
+// import Link from '@material-ui/core/Link';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box'; 
+import Container from '@mui/material/Container'; 
+import { makeStyles } from '@mui/material';
 
-const container = {
-    color:'var(--white)',
-    marginTop:'10px',
-    textAlign:'center'
-}
-const box = {
-    backgroundColor: 'var(--primaryColor)',
-    padding:'10px 0px'
-}
+// const myLink = makeStyles(Link){}
 
-const Footer = () => {
+export default function Footer() {
   return (
-    <Box maxWidth={"100%"} sx={box}>
-        <Container maxWidth={'xl'} sx={container}>
-            <Grid container>
-                <Grid item xs={12} sm={3} textAlign>
-                    <Typography variant='h5'>One</Typography>
-                    <Typography>Hello</Typography>
-                    <Typography>Hello</Typography>
-                    <Typography>Hello</Typography>
-                    <Typography>Hello</Typography>
-                    <Typography>Hello</Typography>
-                    <Typography>Hello</Typography>
-                </Grid>
-                <Grid item xs={12} sm={3}>
-                    <Typography variant='h5'>Two</Typography>
-                    <Typography>Hello</Typography>
-                    <Typography>Hello</Typography>
-                    <Typography>Hello</Typography>
-                    <Typography>Hello</Typography>
-                    <Typography>Hello</Typography>
-                    <Typography>Hello</Typography>
-                </Grid>
-                <Grid item xs={12} sm={3}>
-                    <Typography variant='h5'>Three</Typography>
-                    <Typography>Hello</Typography>
-                    <Typography>Hello</Typography>
-                    <Typography>Hello</Typography>
-                    <Typography>Hello</Typography>
-                    <Typography>Hello</Typography>
-                    <Typography>Hello</Typography>
-                </Grid>
-                <Grid item xs={12} sm={3}>
-                    <Typography variant='h5'>Four</Typography>
-                    <Typography>Hello</Typography>
-                </Grid>
+    <footer>
+      <Box
+        px={{ xs: 3, sm: 10 }}
+        py={{ xs: 5, sm: 10 }}
+        bgcolor="#47B5FF"
+        color="white"
+      >
+        <Container maxWidth="lg">
+          <Grid container spacing={5}>
+            <Grid item xs={12} sm={4}>
+              <Box borderBottom={1}>Help</Box>
+              <Box>
+                <Link href="/" color="inherit">
+                  Contact
+                </Link>
+              </Box>
+              <Box>
+                <Link href="/" color="inherit">
+                  Support
+                </Link>
+              </Box>
+              <Box>
+                <Link href="/" color="inherit">
+                  Privacy
+                </Link>
+              </Box>
             </Grid>
+            <Grid item xs={12} sm={4}>
+              <Box borderBottom={1}>Account</Box>
+              <Box>
+                <Link href="/" color="inherit">
+                  Login
+                </Link>
+              </Box>
+              <Box>
+                <Link href="/" color="inherit">
+                  Register
+                </Link>
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <Box borderBottom={1}>Messages</Box>
+              <Box>
+                <Link href="/" color="inherit">
+                  Backup
+                </Link>
+              </Box>
+              <Box>
+                <Link href="/" color="inherit">
+                  History
+                </Link>
+              </Box>
+              <Box>
+                <Link href="/" color="inherit">
+                  Roll
+                </Link>
+              </Box>
+            </Grid>
+          </Grid>
+          <Box textAlign="center" pt={{ xs: 5, sm: 10 }} pb={{ xs: 5, sm: 0 }}>
+            Tech Analytica Limited &reg; {new Date().getFullYear()}
+          </Box>
         </Container>
-    </Box>
-  )
+      </Box>
+    </footer>
+  );
 }
-
-export default Footer

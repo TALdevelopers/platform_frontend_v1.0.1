@@ -26,22 +26,25 @@ import LocalStorageService from '../../api/localstorage';
 
 const LOGIN_URL=`/api/oauth/token`
 
-function Copyright(props) {
-    return (
-      <Typography variant="body2" color="text.secondary" align="center" {...props}>
-        {'Copyright © '}
-        <Link color="inherit" href="https://www.techanalyticaltd.com/" target={"_blank"}>
-          Tech Analytica Limited
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
-    );
-  }
+// function Copyright(props) {
+//     return (
+//       <Typography variant="body2" color="text.secondary" align="center" {...props}>
+//         {'Copyright © '}
+//         <Link color="inherit" href="https://www.techanalyticaltd.com/" target={"_blank"}>
+//           Tech Analytica Limited
+//         </Link>{' '}
+//         {new Date().getFullYear()}
+//         {'.'}
+//       </Typography>
+//     );
+//   }
   
   const theme = createTheme();
 
-const LoginForm = () => {
+const LoginForm = (props) => {
+  
+  const [currentuser, setCurrentuser] = useState('')
+
   const navigate = useNavigate();
   const [email, setEmail] = useState('')
   const [username, setUsername] = useState('')
@@ -71,26 +74,33 @@ const LoginForm = () => {
     const response =  login(username, password, (response)=>{
       const localStorageService = LocalStorageService.getService();
       localStorageService.setToken(response.data.data);
-      console.log(response.data.data);
+      // console.log(response.data.data);
       if(response.data.data){
-        navigate("/")
-        console.log("User found!!")
+        setCurrentuser(response.data.data.user.username)
+        // console.log("From login.jsx = "+response.data.data.user.username)
+        window.location.reload()
+        navigate("/courses")
+        // window.location.reload()
       }else{
       alert("Wrong user credentials")
       }
     })(
      
-      
+      props.updateUser(currentuser)
   );
   // const newdata =response.json()
   
  
   };
 
+  // React.useEffect(() => {
+	// 	props.updateUser(currentuser)
+	// }, [currentuser]);
+
       
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" sx={{mb:35}}>
         <CssBaseline />
         <Box
           sx={{
@@ -206,7 +216,7 @@ const LoginForm = () => {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
       </Container>
     </ThemeProvider>
   )

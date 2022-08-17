@@ -14,7 +14,7 @@ export const baseURL = 'http://localhost:8081';
 // export const baseURL = window.baseURL;
 
 const loginURL = "/api/oauth/token";
-const logoutURL = "/api/oauth/revoke";
+const logoutURL = "/api/logout";
 
 const client_id = "application";
 const client_secret = "secret";

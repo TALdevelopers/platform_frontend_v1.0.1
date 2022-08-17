@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -16,6 +16,8 @@ import Stack from '@mui/material/Stack';
 import { Link } from "react-router-dom";
 import './Navigationbar.css';
 import { styled } from "@mui/material/styles";
+import { alignProperty } from '@mui/material/styles/cssUtils';
+import api,{ baseURL }  from '../../api/Axios';
 
 const regBtnStyle = styled(Button)(({ theme }) => ({
   '&:hover': {
@@ -38,7 +40,13 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const Navigationbar = (props) => {
 
   const user = props.user;
-  console.log("printed from navbar component: "+user)
+  const fromtoken = props.fromtoken;
+  // useEffect(() => {
+  // //  window.location.reload()
+	// }, [fromtoken]);
+
+ 
+  // console.log("printed from navbar component: "+user)
 	const logout = () => {
 		window.open(`${process.env.REACT_APP_API_URL}/api/logout`, "_self");
 	};
@@ -179,7 +187,25 @@ const Navigationbar = (props) => {
               
                 <MenuItem onClick={handleCloseUserMenu}>
                   {/* <Typography textAlign="center">Profile</Typography> */}
-                  <Typography textAlign="center" onClick={logout}>Logout</Typography>
+                  {
+                    fromtoken?
+                    <Typography textAlign="center" onClick={()=>{
+                      api.post(baseURL+"/api/logout").then((res)=>{
+                        if(res.data.result.isError===false)
+                        {
+                          localStorage.removeItem("access_token");
+                          localStorage.removeItem("refresh_token");
+                          window.location.href = "/login";
+
+                        }
+                      }).catch((err)=>{
+                        window.location.href = "/login";
+                      }); 
+                    }}>Logout</Typography>
+
+                    :
+                    <Typography textAlign="center" onClick={logout}>Logout</Typography>
+                  }
                 </MenuItem>
             
               {/* {settings.map((setting) => (

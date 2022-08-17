@@ -17,11 +17,12 @@ import Error from "./pages/Error";
 import Footer from "./components/footer/Footer";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import LocalStorageService from "./api/localstorage";
 // import '../src/components/navbar/Navigationbar.css';
-
 // import your route components too
 
 function App() {
+  const [fromtoken, setFromtoken] = useState(false);
   const [user, setUser] = useState(null);
 	const getUser = async () => {
 		try {
@@ -31,17 +32,24 @@ function App() {
 			console.log(data.user.passport.user.displayName);
 
 		} catch (err) {
-			console.log(err);
+			// console.log(err);
 		}
 	};
 
 	useEffect(() => {
 		getUser();
+    const localStorageService = LocalStorageService.getService();
+    const token = localStorageService.getAccessToken();
+    if(token){
+      setUser("User")
+      setFromtoken(true)
+    }
 	}, []);
+
   return (
     <BrowserRouter>
     <Offer/>
-    <Navigationbar user={user}/>
+    <Navigationbar user={user} fromtoken={fromtoken}/>
       <Routes>
       <Route exact path="/" element={<Home />}>
         <Route index element={<Home />} />

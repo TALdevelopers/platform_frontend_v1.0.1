@@ -27,7 +27,7 @@ const Banner = () => {
           
           </Grid>
           <Grid item>
-          <Button href='/registration' size="large" variant="contained">Register now</Button>
+          <Button href='/registration' size="large" variant="contained">Sign up now</Button>
           </Grid>
         </Grid>
       <Grid item xs></Grid>

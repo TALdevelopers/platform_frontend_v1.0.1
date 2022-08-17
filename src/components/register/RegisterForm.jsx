@@ -28,18 +28,18 @@ const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
  
 
-function Copyright(props) {
-    return (
-      <Typography variant="body2" color="text.secondary" align="center" {...props}>
-        {'Copyright © '}
-        <Link color="inherit" href="https://www.techanalyticaltd.com/" target={"_blank"}>
-          Tech Analytica Limited
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
-    );
-  }
+// function Copyright(props) {
+//     return (
+//       <Typography variant="body2" color="text.secondary" align="center" {...props}>
+//         {'Copyright © '}
+//         <Link color="inherit" href="https://www.techanalyticaltd.com/" target={"_blank"}>
+//           Tech Analytica Limited
+//         </Link>{' '}
+//         {new Date().getFullYear()}
+//         {'.'}
+//       </Typography>
+//     );
+//   }
   
   const theme = createTheme();
 
@@ -160,7 +160,7 @@ const handleSubmit = async (e) => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Register
+            Sign Up
           </Typography>
 
       
@@ -277,7 +277,7 @@ const handleSubmit = async (e) => {
               sx={{ mt: 3, mb: 2 }}
               disabled={!validName || !validPwd || !validMatch ? true : false}
             >
-              Register
+              Sign Up
             </Button>
             <Grid container>
               <Grid item xs>
@@ -294,7 +294,7 @@ const handleSubmit = async (e) => {
      
         </Box>
         
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
       </Container>
       
     </ThemeProvider>
